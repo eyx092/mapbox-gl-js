@@ -2,9 +2,9 @@ uniform sampler2D u_image0;
 varying vec2 v_pos0;
 
 #ifdef FOG
-varying float v_fog_opacity;
+varying mediump float v_fog_opacity;
 #ifdef FOG_HAZE
-varying vec4 v_haze_color;
+varying mediump vec4 v_haze_color;
 #endif
 #endif
 

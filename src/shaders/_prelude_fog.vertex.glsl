@@ -14,21 +14,21 @@ mediump float fog_opacity(mediump float t) {
     return u_fog_opacity * min(1.0, 1.00747 * falloff);
 }
 
-vec3 fog_position(vec3 pos) {
+mediump vec3 fog_position(mediump vec3 pos) {
     // The following function requires that u_fog_matrix be affine and result in
     // a vector with w = 1. Otherwise we must divide by w.
     return (u_fog_matrix * vec4(pos, 1)).xyz;
 }
 
 // Accept either 2D or 3D positions
-vec3 fog_position(vec2 pos) {
+mediump vec3 fog_position(mediump vec2 pos) {
     return fog_position(vec3(pos, 0));
 }
 
 void fog_haze(
-    vec3 pos, out mediump float fog_opac
+    mediump vec3 pos, out mediump float fog_opac
 #ifdef FOG_HAZE
-    , out vec4 haze
+    , out mediump vec4 haze
 #endif
 ) {
     // Map [near, far] to [0, 1]
