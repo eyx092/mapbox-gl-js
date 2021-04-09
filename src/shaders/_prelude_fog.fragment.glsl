@@ -96,7 +96,7 @@ vec4 fog_apply_premultiplied(vec4 color, vec3 pos) {
 }
 
 vec3 fog_dither(vec3 color) {
-    return dither(color, gl_FragCoord.xy + u_fog_temporal_offset);
+    return color;
 }
 
 vec4 fog_dither(vec4 color) {
