@@ -7,9 +7,9 @@ uniform mediump vec2 u_fog_range;
 uniform mediump vec4 u_haze_color_linear;
 
 // This function much match fog_opacity defined in _prelude_fog.fragment.glsl
-float fog_opacity(float t) {
-    const float decay = 6.0;
-    float falloff = 1.0 - min(1.0, exp(-decay * t));
+highp float fog_opacity(highp float t) {
+    const highp float decay = 6.0;
+    highp float falloff = 1.0 - min(1.0, exp(-decay * t));
     falloff *= falloff * falloff;
     return u_fog_opacity * min(1.0, 1.00747 * falloff);
 }
@@ -26,15 +26,15 @@ vec3 fog_position(vec2 pos) {
 }
 
 void fog_haze(
-    vec3 pos, out float fog_opac
+    vec3 pos, out highp float fog_opac
 #ifdef FOG_HAZE
     , out vec4 haze
 #endif
 ) {
     // Map [near, far] to [0, 1]
-    float t = (length(pos) - u_fog_range.x) / (u_fog_range.y - u_fog_range.x);
+    highp float t = (length(pos) - u_fog_range.x) / (u_fog_range.y - u_fog_range.x);
 
-    float haze_opac = fog_opacity(t);
+    highp float haze_opac = fog_opacity(t);
     fog_opac = haze_opac * pow(smoothstep(0.0, 1.0, t), u_fog_exponent);
 
 #ifdef FOG_HAZE
